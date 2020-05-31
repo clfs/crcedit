@@ -18,6 +18,7 @@ Options:
 	    --dangerous-no-confirm    Disable all confirmation prompts.
 	-e, --export FILENAME         Export to a filename; auto-names otherwise.
 	-f, --filetype FILETYPE       Pick a filetype; auto-detects otherwise.
+	-h, --help                    Print this help message.
 	-l, --list                    List available algorithms and filetypes.
 	-m, --magic MAGICFILE         Use a user-created magic file.
 	-o, --overwrite               Overwrite the input file (dangerous!).
@@ -29,7 +30,7 @@ func main() {
 
 	var (
 		strategyFlag, filetypeFlag, magicFlag, algorithmFlag, exportFlag string
-		overwriteFlag, dangerousNoConfirmFlag, listFlag                  bool
+		overwriteFlag, dangerousNoConfirmFlag, listFlag, helpFlag        bool
 	)
 
 	flag.StringVar(&strategyFlag, "s", "smart", "")
@@ -47,5 +48,7 @@ func main() {
 	flag.BoolVar(&dangerousNoConfirmFlag, "dangerous-no-confirm", false, "")
 	flag.BoolVar(&listFlag, "l", false, "")
 	flag.BoolVar(&listFlag, "list", false, "")
+	flag.BoolVar(&helpFlag, "h", false, "")
+	flag.BoolVar(&helpFlag, "help", false, "")
 	flag.Parse()
 }
