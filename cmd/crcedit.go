@@ -7,7 +7,7 @@ import (
 )
 
 const usage = `Usage:
-    crcedit FILENAME CHECKSUM -a ALGORITHM
+    crcedit FILENAME -c CHECKSUM -a ALGORITHM
 
 By default, crcedit will create a new file with a '.crcedit' extension - your
 files won't be overwritten unless you specify it. Additional documentation can
@@ -15,6 +15,7 @@ be found at https://github.com/clfs/crcedit inside the README.
 
 Options:
 	-a, --algorithm ALGORITHM     Pick a checksum algorithm.
+	-c, --checksum                Specify the desired checksum.
 	    --dangerous-no-confirm    Disable all confirmation prompts.
 	-e, --export FILENAME         Export to a filename; auto-names otherwise.
 	-f, --filetype FILETYPE       Pick a filetype; auto-detects otherwise.
@@ -29,8 +30,8 @@ func main() {
 	flag.Usage = func() { fmt.Fprintf(os.Stderr, "%s\n", usage) }
 
 	var (
-		strategyFlag, filetypeFlag, magicFlag, algorithmFlag, exportFlag string
-		overwriteFlag, dangerousNoConfirmFlag, listFlag, helpFlag        bool
+		strategyFlag, filetypeFlag, magicFlag, algorithmFlag, exportFlag, checksumFlag string
+		overwriteFlag, dangerousNoConfirmFlag, listFlag, helpFlag                      bool
 	)
 
 	flag.StringVar(&strategyFlag, "s", "smart", "")
@@ -43,6 +44,8 @@ func main() {
 	flag.StringVar(&algorithmFlag, "algorithm", "", "")
 	flag.StringVar(&exportFlag, "e", "", "")
 	flag.StringVar(&exportFlag, "export", "", "")
+	flag.StringVar(&checksumFlag, "c", "", "")
+	flag.StringVar(&checksumFlag, "checksum", "", "")
 	flag.BoolVar(&overwriteFlag, "o", false, "")
 	flag.BoolVar(&overwriteFlag, "overwrite", false, "")
 	flag.BoolVar(&dangerousNoConfirmFlag, "dangerous-no-confirm", false, "")
