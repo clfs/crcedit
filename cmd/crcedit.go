@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -54,4 +55,12 @@ func main() {
 	flag.BoolVar(&helpFlag, "h", false, "")
 	flag.BoolVar(&helpFlag, "help", false, "")
 	flag.Parse()
+
+	if flag.NArg() == 0 || helpFlag {
+		flag.Usage()
+		return
+	}
+	if flag.NArg() > 1 {
+		log.Fatalln("error: too many arguments provided")
+	}
 }
