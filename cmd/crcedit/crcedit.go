@@ -67,4 +67,32 @@ func main() {
 		fmt.Println("listFlag: print out a list of all supported algorithms and filetypes")
 		return
 	}
+	if filetypeFlag != "" && magicFlag != "" {
+		log.Fatalln("error: can't set --filetype and --magic at the same time")
+	}
+
+	(&crcedit{
+		strategy:  strategyFlag,
+		filetype:  filetypeFlag,
+		algorithm: algorithmFlag,
+		checksum:  checksumFlag,
+
+		inputFilename:  flag.Arg(0),
+		outputFilename: exportFlag,
+		magicFilename:  magicFlag,
+
+		shouldOverwrite: overwriteFlag,
+		shouldConfirm:   !dangerousNoConfirmFlag,
+	}).Run()
+}
+
+type crcedit struct {
+	strategy, filetype, algorithm, checksum      string
+	inputFilename, outputFilename, magicFilename string
+	shouldOverwrite, shouldConfirm               bool
+}
+
+func (c crcedit) Run() {
+	fmt.Println("crcedit.Run(): ran")
+	return
 }
