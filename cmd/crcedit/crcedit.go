@@ -63,4 +63,8 @@ func main() {
 	if flag.NArg() > 1 {
 		log.Fatalln("error: too many arguments provided")
 	}
+	if listFlag {
+		fmt.Println("listFlag: print out a list of all supported algorithms and filetypes")
+		return
+	}
 }
