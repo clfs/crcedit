@@ -56,18 +56,17 @@ func main() {
 	flag.BoolVar(&helpFlag, "help", false, "")
 	flag.Parse()
 
-	if flag.NArg() == 0 || helpFlag {
+	if helpFlag {
 		flag.Usage()
 		return
-	}
-	if flag.NArg() > 1 {
-		log.Fatalln("error: too many arguments provided")
-	}
-	if listFlag {
+	} else if listFlag {
 		fmt.Println("listFlag: print out a list of all supported algorithms and filetypes")
 		return
-	}
-	if filetypeFlag != "" && magicFlag != "" {
+	} else if flag.NArg() == 0 {
+		log.Fatalln("error: no arguments provided")
+	} else if flag.NArg() > 1 {
+		log.Fatalln("error: too many arguments provided")
+	} else if filetypeFlag != "" && magicFlag != "" {
 		log.Fatalln("error: can't set --filetype and --magic at the same time")
 	}
 
