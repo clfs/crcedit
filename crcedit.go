@@ -3,12 +3,11 @@ package main
 import "fmt"
 
 type crcedit struct {
-	strategy, filetype, algorithm, checksum      string
-	inputFilename, outputFilename, magicFilename string
-	shouldOverwrite, shouldConfirm               bool
+	algorithm, checksum, filetype                          string
+	shouldOverwrite, shouldSkipConfirm, shouldPreserveSize bool
 }
 
-func (c crcedit) Run() {
-	fmt.Println("crcedit.Run(): ran")
+func (c crcedit) run(args []string) {
+	fmt.Printf("crcedit.run(): ran with args %v", args)
 	return
 }
